@@ -1,52 +1,42 @@
-class Animal {
-    public void makeSound() {
-        System.out.println();
+class Shape {
+    public double area() {
+        return 0;                               // 어짜피 오버라이딩되니까 상관없나???
     }
 }
-class Dog extends Animal {
+class Circle extends Shape {
+    double r;
+
+    public Circle (double r) {
+        this.r = r;
+    }
     @Override
-    public void makeSound() {
-        System.out.println("멍멍");
+    public double area() {
+        return Math.PI*r*r;
     }
 }
-class Cat extends Animal {
-    @Override
-    public void makeSound() {
-        System.out.println("야옹");
+class Rectangle extends Shape {
+
+    double v;
+    double h;
+
+    public Rectangle(double v,double h){
+        this.v = v;
+        this.h = h;
     }
-}
-class Quokka extends Animal {
     @Override
-    public void makeSound() {
-        System.out.println("ㅎㅎㅎ");
+    public double area () {
+        return v*h;
     }
 }
 public class Main {
     public static void main(String[] args) {
-        Animal a1 = new Dog();          // 타입은 Animal 을 취하지만 내용은 Dog 으로 이루어짐
-        Animal a2 = new Cat();          // 내용이 다른것들이 하나의 Animal 타입으로 만드는,관리하는 것이 다형성
-        Animal a3 = new Quokka();
+        Shape[] shapes = new Shape[2];
 
-        // a2 = new cat(); // ??? 이게 머지
+        shapes[0] = new Circle(3);              // 왜갑자기 바꿔...
+        shapes[1] = new Rectangle(3, 4);
 
-// 장점 : 배열에 넣어 관리 할 수 있다.
-
-        Animal[] animals = {a1, a2, a3};
-        for (Animal animal : animals) { // for ( 클래스 요소명 : 배열) {
-            animal.makeSound();         // 요소.기능()                  // 요소의 기능을 전부 실행
-        }                               // }
-//        for (int i = 0; i<animals.length; i++) {  위랑 동일한 기능
-//            animals[i].makeSound();
-//        }
-
-// 번외 : Dog 랑 Cat 합쳐서 키메라 만들수 있나?? : 이를 다중상속 이라고 하는데 자바에서는 지원하지 않는다.
-// 만든다고 한다면 Class 키메라 를 만들어서 @개특성, @고양이특성 을 추가한다.
-// 이번경우에는 만약에 만들면 울음소리를 개로 할지 고양이로 할지
-
-
-
-        a1.makeSound();
-        a2.makeSound();
-        a3.makeSound();
+        for (Shape shape : shapes) {
+            System.out.println(shape.area());
+        }
     }
 }
