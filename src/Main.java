@@ -39,7 +39,7 @@ public class Main {
         person.setName("응혁");                   // 세터접근 입력
         System.out.println(person.getName());    // 게터접근 출력
 
-        person.setAge(10)
-
+        person.setAge(10);
+        System.out.println(person.getAge());
     }
 }
